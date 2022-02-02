@@ -13,6 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// ROTTE PER AREA ADMIN
+Route::middleware('auth')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->group(function() {
+        // Admin Homepage 
+        Route::get('/', 'HomeController@index')->name('home');
+    });
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('guests.home');
 });
